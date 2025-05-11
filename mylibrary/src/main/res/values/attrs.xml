@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NadComponent">
+        <attr name="nadStrokeWidth" format="dimension" />
+        <attr name="nadCornerRadius" format="dimension" />
+        <attr name="nadTopLeftCornerRadius" format="dimension" />
+        <attr name="nadTopRightCornerRadius" format="dimension" />
+        <attr name="nadBottomLeftCornerRadius" format="dimension" />
+        <attr name="nadBottomRightCornerRadius" format="dimension" />
+        <attr name="nadWillNotDraw" format="boolean" />
+        <attr name="nadStrokeColor" format="color" />
+        <attr name="nadElevationDp" format="float" />
+        <attr name="nadClipChildren" format="boolean" />
+        <attr name="nadStrokeDirection">
+            <enum name="vertical" value="0" />
+            <enum name="horizontal" value="1" />
+            <enum name="diagonal_tl_br" value="2" />
+            <enum name="diagonal_bl_tr" value="3" />
+        </attr>
+    </declare-styleable>
+
+</resources>

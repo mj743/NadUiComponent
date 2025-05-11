@@ -1,0 +1,40 @@
+# Android Studio
+*.iml
+.gradle/
+.idea/
+.idea/*
+
+# Keep only essential project structure
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+
+# Local config
+/local.properties
+
+# OS-specific
+.DS_Store
+
+# Build & intermediates
+/build/
+*/build/
+.cxx/
+.externalNativeBuild/
+captures/
+
+# Others
+*.apk
+*.ap_
+output.json
+*.log
+
+# Kotlin
+*.kotlin_module
+
+# Signing / keys
+*.jks
+*.keystore
+
+# Misc
+*.class
+*.swp
+*.lock
