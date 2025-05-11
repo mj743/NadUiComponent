@@ -16,7 +16,24 @@
 - Per-corner radius customization
 - Background color handled inside custom view
 - Modular base classes for easy extension
+## 📦 Installation
 
+Using **JitPack**:
+
+### 1. Add JitPack to your root `settings.gradle`:
+```groovy
+dependencyResolutionManagement {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+### 2. Add NadUiComponent to your module's `build.gradle`:
+```groovy
+implementation 'com.github.mj743:NadUiComponent:1.1.0'
+```
 ## 🛠️ Usage
 
 ```xml
