@@ -2,6 +2,7 @@ package com.nad.ui.component.base;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -12,6 +13,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.nad.ui.component.R;
+import com.nad.ui.utils.TypedArrayHelper;
 
 public abstract class NadBaseView extends View {
 
@@ -50,7 +52,7 @@ public abstract class NadBaseView extends View {
         bgPaint.setStyle(Paint.Style.FILL);
 
         if (attrs != null) {
-            try (TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NadComponent, 0, 0)){
+            TypedArrayHelper.withTypedArray(context, attrs, R.styleable.NadComponent, a -> {
                 setWillNotDraw(a.getBoolean(R.styleable.NadComponent_nadWillNotDraw, false));
 
                 cornerRadius = a.getDimension(R.styleable.NadComponent_nadCornerRadius, 0f);
@@ -60,9 +62,10 @@ public abstract class NadBaseView extends View {
                 bottomRightRadius = a.getDimension(R.styleable.NadComponent_nadBottomRightCornerRadius, cornerRadius);
 
                 strokeWidth = a.getDimension(R.styleable.NadComponent_nadStrokeWidth, 0f);
-                strokeColor = a.getColor(R.styleable.NadComponent_nadStrokeColor, 0x00000000);
+                strokeColor = a.getColor(R.styleable.NadComponent_nadStrokeColor, Color.TRANSPARENT);
+
                 shouldClipChildren = a.getBoolean(R.styleable.NadComponent_nadClipChildren, true);
-            }
+            });
 
         }
 

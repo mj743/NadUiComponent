@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.nad.ui.component.R;
+import com.nad.ui.utils.TypedArrayHelper;
 
 public class NADFrameLayout extends FrameLayout {
     private float cornerRadius = 0f;
@@ -53,33 +54,32 @@ public class NADFrameLayout extends FrameLayout {
         init(context, attrs);
     }
 
-    private void init(Context context, @Nullable AttributeSet attrs) {
+    private void init(Context context, AttributeSet attrs) {
         strokePaint.setStyle(Paint.Style.STROKE);
-
         if (attrs != null) {
-            try (TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NadComponent, 0, 0)) {
-                setWillNotDraw(a.getBoolean(R.styleable.NadComponent_nadWillNotDraw, false));
+            TypedArrayHelper.withTypedArray(context, attrs, R.styleable.NadComponent, typedArray -> {
+                setWillNotDraw(typedArray.getBoolean(R.styleable.NadComponent_nadWillNotDraw, false));
 
-                cornerRadius = a.getDimension(R.styleable.NadComponent_nadCornerRadius, 0f);
+                cornerRadius = typedArray.getDimension(R.styleable.NadComponent_nadCornerRadius, 0f);
 
-                topLeftRadius = a.getDimension(R.styleable.NadComponent_nadTopLeftCornerRadius, cornerRadius);
-                topRightRadius = a.getDimension(R.styleable.NadComponent_nadTopRightCornerRadius, cornerRadius);
-                bottomLeftRadius = a.getDimension(R.styleable.NadComponent_nadBottomLeftCornerRadius, cornerRadius);
-                bottomRightRadius = a.getDimension(R.styleable.NadComponent_nadBottomRightCornerRadius, cornerRadius);
+                topLeftRadius = typedArray.getDimension(R.styleable.NadComponent_nadTopLeftCornerRadius, cornerRadius);
+                topRightRadius = typedArray.getDimension(R.styleable.NadComponent_nadTopRightCornerRadius, cornerRadius);
+                bottomLeftRadius = typedArray.getDimension(R.styleable.NadComponent_nadBottomLeftCornerRadius, cornerRadius);
+                bottomRightRadius = typedArray.getDimension(R.styleable.NadComponent_nadBottomRightCornerRadius, cornerRadius);
 
-                strokeWidth = a.getDimension(R.styleable.NadComponent_nadStrokeWidth, 0f);
-                strokeColor = a.getColor(R.styleable.NadComponent_nadStrokeColor, Color.TRANSPARENT);
+                strokeWidth = typedArray.getDimension(R.styleable.NadComponent_nadStrokeWidth, 0f);
+                strokeColor = typedArray.getColor(R.styleable.NadComponent_nadStrokeColor, Color.TRANSPARENT);
                 strokePaint.setStrokeWidth(strokeWidth);
                 strokePaint.setColor(strokeColor);
 
-                elevationDp = a.getDimension(R.styleable.NadComponent_nadElevationDp, 0f);
+                elevationDp = typedArray.getDimension(R.styleable.NadComponent_nadElevationDp, 0f);
                 setShadowElevation(elevationDp, Color.GRAY);
 
-                shouldClipChildren = a.getBoolean(R.styleable.NadComponent_nadClipChildren, true); // baca atribut baru
-            }
+                shouldClipChildren = typedArray.getBoolean(R.styleable.NadComponent_nadClipChildren, true);
+            });
+
         }
     }
-
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);

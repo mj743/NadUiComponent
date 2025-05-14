@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.nad.ui.component.R;
+import com.nad.ui.utils.TypedArrayHelper;
 
 public abstract class NadBaseConstraintLayout extends ConstraintLayout {
 
@@ -53,7 +54,7 @@ public abstract class NadBaseConstraintLayout extends ConstraintLayout {
         bgPaint.setStyle(Paint.Style.FILL);
 
         if (attrs != null) {
-            try (TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.NadComponent, 0, 0)) {
+            TypedArrayHelper.withTypedArray(context, attrs, R.styleable.NadComponent, a -> {
                 setWillNotDraw(a.getBoolean(R.styleable.NadComponent_nadWillNotDraw, false));
 
                 cornerRadius = a.getDimension(R.styleable.NadComponent_nadCornerRadius, 0f);
@@ -64,8 +65,10 @@ public abstract class NadBaseConstraintLayout extends ConstraintLayout {
 
                 strokeWidth = a.getDimension(R.styleable.NadComponent_nadStrokeWidth, 0f);
                 strokeColor = a.getColor(R.styleable.NadComponent_nadStrokeColor, Color.TRANSPARENT);
+
                 shouldClipChildren = a.getBoolean(R.styleable.NadComponent_nadClipChildren, true);
-            }
+            });
+
         }
 
         if (getBackground() instanceof ColorDrawable) {
